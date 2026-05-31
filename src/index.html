@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productivity Suite — by Varshan</title>
+  <meta name="description" content="Your all-in-one personal productivity suite: Tasks, Notes, Habits, Pomodoro, Budget, Calendar, Passwords, Clipboard, and File Organizer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <!-- Title Bar -->
+  <div class="titlebar" id="titlebar">
+    <div class="titlebar-left">
+      <div class="titlebar-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">ProductivitySuite</span>
+      </div>
+    </div>
+    <div class="titlebar-drag"></div>
+    <div class="titlebar-controls">
+      <button class="tc-btn tc-min" id="btn-minimize" title="Minimize">─</button>
+      <button class="tc-btn tc-max" id="btn-maximize" title="Maximize">□</button>
+      <button class="tc-btn tc-close" id="btn-close" title="Close">✕</button>
+    </div>
+  </div>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="user-info">
+          <div class="user-avatar">V</div>
+          <div class="user-details">
+            <div class="user-name">Varshan Gowda</div>
+            <div class="user-status"><span class="status-dot"></span>Active</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">MODULES</div>
+        <button class="nav-item active" data-page="dashboard" id="nav-dashboard">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Dashboard</span>
+          <span class="nav-badge" id="badge-tasks"></span>
+        </button>
+        <button class="nav-item" data-page="tasks" id="nav-tasks">
+          <span class="nav-icon">✅</span>
+          <span class="nav-label">Tasks</span>
+          <span class="nav-badge" id="badge-tasks-count"></span>
+        </button>
+        <button class="nav-item" data-page="notes" id="nav-notes">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">Notes</span>
+        </button>
+        <button class="nav-item" data-page="habits" id="nav-habits">
+          <span class="nav-icon">🔥</span>
+          <span class="nav-label">Habits</span>
+        </button>
+        <button class="nav-item" data-page="pomodoro" id="nav-pomodoro">
+          <span class="nav-icon">⏱️</span>
+          <span class="nav-label">Pomodoro</span>
+        </button>
+        <button class="nav-item" data-page="budget" id="nav-budget">
+          <span class="nav-icon">💰</span>
+          <span class="nav-label">Budget</span>
+        </button>
+        <button class="nav-item" data-page="calendar" id="nav-calendar">
+          <span class="nav-icon">📅</span>
+          <span class="nav-label">Calendar</span>
+        </button>
+        <button class="nav-item" data-page="passwords" id="nav-passwords">
+          <span class="nav-icon">🔐</span>
+          <span class="nav-label">Passwords</span>
+        </button>
+        <button class="nav-item" data-page="clipboard" id="nav-clipboard">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">Clipboard</span>
+        </button>
+        <button class="nav-item" data-page="files" id="nav-files">
+          <span class="nav-icon">📁</span>
+          <span class="nav-label">Files</span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-clock" id="sidebar-clock">--:-- --</div>
+        <div class="sidebar-date" id="sidebar-date">---</div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+
+      <!-- ═══════════════ DASHBOARD ═══════════════ -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Good <span id="greeting-time">Day</span>, Varshan! 👋</h1>
+            <p class="page-subtitle" id="dashboard-date">Today is a great day to be productive</p>
+          </div>
+        </div>
+        <div class="dashboard-grid">
+          <div class="dash-card card-tasks" onclick="navigate('tasks')">
+            <div class="dash-card-icon">✅</div>
+            <div class="dash-card-info">
+              <div class="dash-card-value" id="dash-tasks-count">0</div>
+              <div class="dash-card-label">Pending Tasks</div>
+            </div>
+            <div class="dash-card-arrow">→</div>
+          </div>
+          <div class="dash-card card-habits" onclick="navigate('habits')">
+            <div class="dash-card-icon">🔥</div>
+            <div class="dash-card-info">
+              <div class="dash-card-value" id="dash-habits-done">0/0</div>
+              <div class="dash-card-label">Habits Today</div>
+            </div>
+            <div class="dash-card-arrow">→</div>
+          </div>
+          <div class="dash-card card-budget" onclick="navigate('budget')">
+            <div class="dash-card-icon">💰</div>
+            <div class="dash-card-info">
+              <div class="dash-card-value" id="dash-balance">₹0</div>
+              <div class="dash-card-label">Balance</div>
+            </div>
+            <div class="dash-card-arrow">→</div>
+          </div>
+          <div class="dash-card card-pomodoro" onclick="navigate('pomodoro')">
+            <div class="dash-card-icon">⏱️</div>
+            <div class="dash-card-info">
+              <div class="dash-card-value" id="dash-sessions">0</div>
+              <div class="dash-card-label">Sessions Today</div>
+            </div>
+            <div class="dash-card-arrow">→</div>
+          </div>
+          <div class="dash-card card-notes" onclick="navigate('notes')">
+            <div class="dash-card-icon">📝</div>
+            <div class="dash-card-info">
+              <div class="dash-card-value" id="dash-notes-count">0</div>
+              <div class="dash-card-label">Notes</div>
+            </div>
+            <div class="dash-card-arrow">→</div>
+          </div>
+          <div class="dash-card card-events" onclick="navigate('calendar')">
+            <div class="dash-card-icon">📅</div>
+            <div class="dash-card-info">
+              <div class="dash-card-value" id="dash-events">0</div>
+              <div class="dash-card-label">Upcoming Events</div>
+            </div>
+            <div class="dash-card-arrow">→</div>
+          </div>
+        </div>
+        <div class="dashboard-bottom">
+          <div class="recent-tasks-card">
+            <h3 class="section-title">📋 Today's Tasks</h3>
+            <div id="dashboard-tasks-list" class="dash-tasks-list"></div>
+          </div>
+          <div class="quote-card">
+            <h3 class="section-title">💡 Daily Motivation</h3>
+            <div class="quote-text" id="daily-quote">"The secret of getting ahead is getting started."</div>
+            <div class="quote-author">— Mark Twain</div>
+            <button class="btn-ghost" onclick="newQuote()" style="margin-top:12px;">New Quote</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ TASKS ═══════════════ -->
+      <div class="page" id="page-tasks">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">✅ Task Manager</h1>
+            <p class="page-subtitle">Organize your work with priorities and deadlines</p>
+          </div>
+          <button class="btn-primary" onclick="openTaskModal()">+ New Task</button>
+        </div>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all" onclick="filterTasks('all', this)">All</button>
+          <button class="filter-btn" data-filter="today" onclick="filterTasks('today', this)">Today</button>
+          <button class="filter-btn" data-filter="high" onclick="filterTasks('high', this)">High Priority</button>
+          <button class="filter-btn" data-filter="pending" onclick="filterTasks('pending', this)">Pending</button>
+          <button class="filter-btn" data-filter="done" onclick="filterTasks('done', this)">Completed</button>
+          <input class="search-input" id="task-search" placeholder="🔍 Search tasks..." oninput="renderTasks()" />
+        </div>
+        <div class="task-list" id="task-list"></div>
+
+        <!-- Task Modal -->
+        <div class="modal-overlay" id="task-modal">
+          <div class="modal">
+            <div class="modal-header">
+              <h2 id="task-modal-title">New Task</h2>
+              <button class="modal-close" onclick="closeTaskModal()">✕</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Task Title *</label>
+                <input class="form-input" id="task-title" placeholder="What needs to be done?" />
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-input form-textarea" id="task-desc" placeholder="Add details..."></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Priority</label>
+                  <select class="form-input" id="task-priority">
+                    <option value="low">🟢 Low</option>
+                    <option value="medium" selected>🟡 Medium</option>
+                    <option value="high">🔴 High</option>
+                    <option value="urgent">🚨 Urgent</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Due Date</label>
+                  <input class="form-input" id="task-due" type="date" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Category</label>
+                <input class="form-input" id="task-category" placeholder="Work, Personal, Health..." />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-ghost" onclick="closeTaskModal()">Cancel</button>
+              <button class="btn-primary" onclick="saveTask()">Save Task</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ NOTES ═══════════════ -->
+      <div class="page" id="page-notes">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">📝 Notes</h1>
+            <p class="page-subtitle">Capture your thoughts and ideas</p>
+          </div>
+          <button class="btn-primary" onclick="newNote()">+ New Note</button>
+        </div>
+        <div class="notes-layout">
+          <div class="notes-sidebar">
+            <input class="search-input" id="note-search" placeholder="🔍 Search notes..." oninput="renderNotesList()" />
+            <div class="notes-list" id="notes-list"></div>
+          </div>
+          <div class="notes-editor" id="notes-editor">
+            <div class="note-empty-state">
+              <div class="empty-icon">📝</div>
+              <div class="empty-text">Select a note or create a new one</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ HABITS ═══════════════ -->
+      <div class="page" id="page-habits">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">🔥 Habit Tracker</h1>
+            <p class="page-subtitle">Build consistency, one day at a time</p>
+          </div>
+          <button class="btn-primary" onclick="openHabitModal()">+ New Habit</button>
+        </div>
+        <div class="habits-today">
+          <h3 class="section-title">Today's Habits — <span id="habit-date-label"></span></h3>
+          <div class="habits-grid" id="habits-grid"></div>
+        </div>
+        <div class="habits-stats">
+          <h3 class="section-title">📊 7-Day Overview</h3>
+          <div class="habits-chart" id="habits-chart"></div>
+        </div>
+
+        <!-- Habit Modal -->
+        <div class="modal-overlay" id="habit-modal">
+          <div class="modal">
+            <div class="modal-header">
+              <h2>New Habit</h2>
+              <button class="modal-close" onclick="closeHabitModal()">✕</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Habit Name *</label>
+                <input class="form-input" id="habit-name" placeholder="e.g. Drink 8 glasses of water" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Icon</label>
+                  <input class="form-input" id="habit-icon" placeholder="💧" maxlength="2" />
+                </div>
+                <div class="form-group">
+                  <label>Color</label>
+                  <input class="form-input" id="habit-color" type="color" value="#6c63ff" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Goal (times per day)</label>
+                <input class="form-input" id="habit-goal" type="number" value="1" min="1" max="100" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-ghost" onclick="closeHabitModal()">Cancel</button>
+              <button class="btn-primary" onclick="saveHabit()">Save Habit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ POMODORO ═══════════════ -->
+      <div class="page" id="page-pomodoro">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">⏱️ Pomodoro Timer</h1>
+            <p class="page-subtitle">Focus with intent, rest with purpose</p>
+          </div>
+        </div>
+        <div class="pomodoro-layout">
+          <div class="pomodoro-main">
+            <div class="pomodoro-mode-tabs">
+              <button class="mode-tab active" data-mode="work" onclick="setPomoMode('work', this)">🍅 Focus</button>
+              <button class="mode-tab" data-mode="short" onclick="setPomoMode('short', this)">☕ Short Break</button>
+              <button class="mode-tab" data-mode="long" onclick="setPomoMode('long', this)">🌙 Long Break</button>
+            </div>
+            <div class="pomodoro-timer-ring">
+              <svg class="timer-svg" viewBox="0 0 200 200">
+                <circle class="timer-track" cx="100" cy="100" r="88" />
+                <circle class="timer-progress" id="timer-progress" cx="100" cy="100" r="88" />
+              </svg>
+              <div class="timer-display">
+                <div class="timer-time" id="timer-display">25:00</div>
+                <div class="timer-label" id="timer-label">Focus Time</div>
+              </div>
+            </div>
+            <div class="pomodoro-controls">
+              <button class="pomo-btn" onclick="resetTimer()" title="Reset">↺</button>
+              <button class="pomo-btn pomo-primary" id="pomo-toggle" onclick="toggleTimer()">▶ Start</button>
+              <button class="pomo-btn" onclick="skipSession()" title="Skip">⏭</button>
+            </div>
+            <div class="pomodoro-session-info">
+              Session <span id="pomo-session-num">1</span> of <span id="pomo-session-target">4</span>
+              &nbsp;|&nbsp; Today: <span id="pomo-today">0</span> sessions
+            </div>
+          </div>
+          <div class="pomodoro-settings-panel">
+            <h3 class="section-title">⚙️ Settings</h3>
+            <div class="form-group">
+              <label>Focus Duration (min)</label>
+              <input class="form-input" id="pomo-work-dur" type="number" value="25" min="1" max="60" onchange="updatePomoSettings()" />
+            </div>
+            <div class="form-group">
+              <label>Short Break (min)</label>
+              <input class="form-input" id="pomo-short-dur" type="number" value="5" min="1" max="30" onchange="updatePomoSettings()" />
+            </div>
+            <div class="form-group">
+              <label>Long Break (min)</label>
+              <input class="form-input" id="pomo-long-dur" type="number" value="15" min="1" max="60" onchange="updatePomoSettings()" />
+            </div>
+            <div class="form-group">
+              <label>Sessions before Long Break</label>
+              <input class="form-input" id="pomo-sessions-target" type="number" value="4" min="1" max="10" onchange="updatePomoSettings()" />
+            </div>
+            <div class="form-group">
+              <label>Current Task</label>
+              <input class="form-input" id="pomo-task-label" placeholder="What are you working on?" />
+            </div>
+            <div class="pomo-history">
+              <h3 class="section-title">📊 Session Log</h3>
+              <div id="pomo-log"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ BUDGET ═══════════════ -->
+      <div class="page" id="page-budget">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">💰 Budget Tracker</h1>
+            <p class="page-subtitle">Track your income and expenses</p>
+          </div>
+          <button class="btn-primary" onclick="openTxModal()">+ Add Transaction</button>
+        </div>
+        <div class="budget-summary">
+          <div class="budget-card budget-income">
+            <div class="budget-card-label">Total Income</div>
+            <div class="budget-card-value" id="budget-income">₹0.00</div>
+          </div>
+          <div class="budget-card budget-expense">
+            <div class="budget-card-label">Total Expenses</div>
+            <div class="budget-card-value" id="budget-expense">₹0.00</div>
+          </div>
+          <div class="budget-card budget-balance">
+            <div class="budget-card-label">Balance</div>
+            <div class="budget-card-value" id="budget-balance-main">₹0.00</div>
+          </div>
+        </div>
+        <div class="budget-layout">
+          <div class="budget-transactions">
+            <div class="filter-bar">
+              <button class="filter-btn active" onclick="filterTx('all', this)">All</button>
+              <button class="filter-btn" onclick="filterTx('income', this)">Income</button>
+              <button class="filter-btn" onclick="filterTx('expense', this)">Expenses</button>
+              <input class="search-input" id="tx-search" placeholder="🔍 Search..." oninput="renderTransactions()" />
+            </div>
+            <div class="tx-list" id="tx-list"></div>
+          </div>
+          <div class="budget-chart-panel">
+            <h3 class="section-title">📊 By Category</h3>
+            <div class="budget-categories" id="budget-categories"></div>
+          </div>
+        </div>
+
+        <!-- Transaction Modal -->
+        <div class="modal-overlay" id="tx-modal">
+          <div class="modal">
+            <div class="modal-header">
+              <h2>Add Transaction</h2>
+              <button class="modal-close" onclick="closeTxModal()">✕</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Type</label>
+                <div class="type-toggle">
+                  <button class="type-btn active" id="tx-type-income" onclick="setTxType('income')">💵 Income</button>
+                  <button class="type-btn" id="tx-type-expense" onclick="setTxType('expense')">💸 Expense</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Amount (₹) *</label>
+                <input class="form-input" id="tx-amount" type="number" placeholder="0.00" step="0.01" min="0" />
+              </div>
+              <div class="form-group">
+                <label>Description *</label>
+                <input class="form-input" id="tx-desc" placeholder="What is this for?" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Category</label>
+                  <select class="form-input" id="tx-category">
+                    <option>Food & Dining</option>
+                    <option>Transport</option>
+                    <option>Shopping</option>
+                    <option>Entertainment</option>
+                    <option>Health</option>
+                    <option>Education</option>
+                    <option>Salary</option>
+                    <option>Freelance</option>
+                    <option>Investment</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Date</label>
+                  <input class="form-input" id="tx-date" type="date" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-ghost" onclick="closeTxModal()">Cancel</button>
+              <button class="btn-primary" onclick="saveTransaction()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ CALENDAR ═══════════════ -->
+      <div class="page" id="page-calendar">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">📅 Calendar & Planner</h1>
+            <p class="page-subtitle">Plan your schedule and events</p>
+          </div>
+          <button class="btn-primary" onclick="openEventModal()">+ Add Event</button>
+        </div>
+        <div class="calendar-layout">
+          <div class="calendar-main">
+            <div class="calendar-nav">
+              <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+              <h2 class="cal-month-title" id="cal-month-title">Month Year</h2>
+              <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+          </div>
+          <div class="calendar-sidebar">
+            <h3 class="section-title">📌 Events</h3>
+            <div class="events-list" id="events-list"></div>
+          </div>
+        </div>
+
+        <!-- Event Modal -->
+        <div class="modal-overlay" id="event-modal">
+          <div class="modal">
+            <div class="modal-header">
+              <h2>Add Event</h2>
+              <button class="modal-close" onclick="closeEventModal()">✕</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Event Title *</label>
+                <input class="form-input" id="event-title" placeholder="Meeting, Birthday, Reminder..." />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Date *</label>
+                  <input class="form-input" id="event-date" type="date" />
+                </div>
+                <div class="form-group">
+                  <label>Time</label>
+                  <input class="form-input" id="event-time" type="time" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-input form-textarea" id="event-desc" placeholder="Event details..."></textarea>
+              </div>
+              <div class="form-group">
+                <label>Color</label>
+                <input class="form-input" id="event-color" type="color" value="#6c63ff" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-ghost" onclick="closeEventModal()">Cancel</button>
+              <button class="btn-primary" onclick="saveEvent()">Save Event</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ PASSWORDS ═══════════════ -->
+      <div class="page" id="page-passwords">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">🔐 Password Manager</h1>
+            <p class="page-subtitle">Your secure local password vault</p>
+          </div>
+          <button class="btn-primary" onclick="openPassModal()">+ Add Password</button>
+        </div>
+        <div class="vault-lock-screen" id="vault-lock-screen">
+          <div class="vault-lock-card">
+            <div class="vault-icon">🔒</div>
+            <h2>Vault Locked</h2>
+            <p>Enter your master password to access your vault</p>
+            <div class="form-group" style="width:100%;max-width:300px;">
+              <input class="form-input" id="master-pass-input" type="password" placeholder="Master Password" onkeyup="if(event.key==='Enter')unlockVault()" />
+            </div>
+            <button class="btn-primary" onclick="unlockVault()" style="margin-top:8px;">Unlock Vault</button>
+            <p class="vault-hint">Default: <code>admin123</code> (change in settings)</p>
+          </div>
+        </div>
+        <div class="vault-content" id="vault-content" style="display:none;">
+          <div class="filter-bar">
+            <input class="search-input" id="pass-search" placeholder="🔍 Search passwords..." oninput="renderPasswords()" />
+            <button class="btn-ghost" onclick="lockVault()" style="margin-left:auto;">🔒 Lock</button>
+          </div>
+          <div class="passwords-grid" id="passwords-grid"></div>
+        </div>
+
+        <!-- Password Modal -->
+        <div class="modal-overlay" id="pass-modal">
+          <div class="modal">
+            <div class="modal-header">
+              <h2 id="pass-modal-title">Add Password</h2>
+              <button class="modal-close" onclick="closePassModal()">✕</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Site / App Name *</label>
+                <input class="form-input" id="pass-site" placeholder="Google, Netflix, GitHub..." />
+              </div>
+              <div class="form-group">
+                <label>Username / Email</label>
+                <input class="form-input" id="pass-user" placeholder="your@email.com" />
+              </div>
+              <div class="form-group">
+                <label>Password *</label>
+                <div class="pass-input-row">
+                  <input class="form-input" id="pass-password" type="password" placeholder="••••••••" />
+                  <button class="btn-ghost" onclick="togglePassVis('pass-password')">👁</button>
+                  <button class="btn-ghost" onclick="generatePassword()">🎲 Generate</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>URL</label>
+                <input class="form-input" id="pass-url" placeholder="https://..." />
+              </div>
+              <div class="form-group">
+                <label>Notes</label>
+                <textarea class="form-input form-textarea" id="pass-notes" placeholder="Additional notes..."></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-ghost" onclick="closePassModal()">Cancel</button>
+              <button class="btn-primary" onclick="savePassword()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ CLIPBOARD ═══════════════ -->
+      <div class="page" id="page-clipboard">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">📋 Clipboard Manager</h1>
+            <p class="page-subtitle">Never lose copied content again</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn-ghost" onclick="captureClipboard()">📥 Capture Current</button>
+            <button class="btn-ghost" onclick="clearClipboardHistory()">🗑 Clear All</button>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <input class="search-input" id="clip-search" placeholder="🔍 Search clipboard..." oninput="renderClipboard()" />
+          <div class="auto-capture-toggle">
+            <label class="toggle-label">
+              <input type="checkbox" id="auto-capture" onchange="toggleAutoCapture()" />
+              <span class="toggle-slider"></span>
+              Auto Capture
+            </label>
+          </div>
+        </div>
+        <div class="clipboard-grid" id="clipboard-grid"></div>
+      </div>
+
+      <!-- ═══════════════ FILES ═══════════════ -->
+      <div class="page" id="page-files">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">📁 File Organizer</h1>
+            <p class="page-subtitle">Quick access to your files and folders</p>
+          </div>
+          <button class="btn-primary" onclick="addQuickAccess()">+ Add Quick Access</button>
+        </div>
+        <div class="files-layout">
+          <div class="files-sidebar">
+            <h3 class="section-title">⚡ Quick Access</h3>
+            <div class="quick-access-list" id="quick-access-list"></div>
+            <h3 class="section-title" style="margin-top:16px;">📂 Browse</h3>
+            <button class="btn-ghost" style="width:100%;" onclick="browseFolder()">Open Folder...</button>
+          </div>
+          <div class="files-browser">
+            <div class="file-path-bar">
+              <button class="cal-nav-btn" onclick="goUp()" id="btn-go-up" disabled>↑ Up</button>
+              <div class="file-path" id="file-path">No folder selected</div>
+              <button class="btn-ghost" onclick="refreshDir()">↻ Refresh</button>
+            </div>
+            <div class="files-grid" id="files-grid">
+              <div class="empty-state">
+                <div class="empty-icon">📁</div>
+                <div class="empty-text">Open a folder to browse files</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/habits.js"></script>
+  <script src="js/pomodoro.js"></script>
+  <script src="js/budget.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/passwords.js"></script>
+  <script src="js/clipboard.js"></script>
+  <script src="js/files.js"></script>
+</body>
+</html>

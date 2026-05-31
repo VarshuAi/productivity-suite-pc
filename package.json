@@ -1,0 +1,34 @@
+{
+  "name": "productivity-suite-pc",
+  "version": "1.0.0",
+  "description": "🖥️ A comprehensive personal productivity suite for PC",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder"
+  },
+  "author": "Varshan Gowda <VARSHAN69>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  },
+  "build": {
+    "appId": "com.varshan.productivity-suite",
+    "productName": "Productivity Suite",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
