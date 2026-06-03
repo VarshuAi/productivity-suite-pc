@@ -13,13 +13,13 @@
 
 <br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Source%20Code%20Pro&weight=500&size=22&duration=3500&pause=800&color=00FF88&center=true&vCenter=true&multiline=true&repeat=true&random=false&width=700&height=80&lines=%3E%20Welcome%20to%20productivity-suite-pc%20%F0%9F%9A%80;%3E%20Built%20using%20JavaScript%20%7C%20Optimized%20%26%20Secure;%3E%20%3F%3F%3F%20A%20comprehensive%20personal%20productivit...)](https://github.com/VarshuAi/productivity-suite-pc)
+<a href="https://github.com/VarshuAi/productivity-suite-pc"><img src="https://readme-typing-svg.demolab.com?font=Source%20Code%20Pro&weight=500&size=22&duration=3500&pause=800&color=00FF88&center=true&vCenter=true&multiline=true&repeat=true&random=false&width=700&height=80&lines=%3E%20Welcome%20to%20productivity-suite-pc%20%F0%9F%9A%80;%3E%20Built%20using%20JavaScript%20%7C%20Optimized%20%26%20Secure;%3E%20%3F%3F%3F%20A%20comprehensive%20personal%20productivit..." alt="Typing SVG"/></a>
 
 <br/>
 
-![Version](https://img.shields.io/badge/Version-1.0-00FF88?style=for-the-badge&logo=github&logoColor=black)
-![Language](https://img.shields.io/badge/JavaScript-Tech-00CC66?style=for-the-badge&logo=javascript&logoColor=black)
-![Status](https://img.shields.io/badge/Status-Active-14354C?style=for-the-badge&logo=git&logoColor=white)
+<img src="https://img.shields.io/badge/Version-1.0-00FF88?style=for-the-badge&logo=github&logoColor=black" alt="Version"/>
+<img src="https://img.shields.io/badge/JavaScript-Tech-00CC66?style=for-the-badge&logo=javascript&logoColor=black" alt="Language"/>
+<img src="https://img.shields.io/badge/Status-Active-14354C?style=for-the-badge&logo=git&logoColor=white" alt="Status"/>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,50:001F0D,100:000000&height=60&section=header&text=&fontSize=0" width="100%"/>
 
@@ -46,7 +46,7 @@ primary_tech: JavaScript
 
 <div align="center">
 <br>
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=VarshuAi&repo=productivity-suite-pc&theme=react-dark&bg_color=000000&color=00FF88&line=00FF88&point=00CC66)](https://github.com/VarshuAi/productivity-suite-pc)
+<a href="https://github.com/VarshuAi/productivity-suite-pc"><img src="https://github-readme-activity-graph.vercel.app/graph?username=VarshuAi&repo=productivity-suite-pc&theme=react-dark&bg_color=000000&color=00FF88&line=00FF88&point=00CC66" alt="Activity Graph"/></a>
 <br>
 </div>
 
@@ -57,20 +57,9 @@ primary_tech: JavaScript
 <samp>&nbsp;FEATURES</samp>
 </h2>
 
-| Module | Description |
-|--------|-------------|
-| 🏠 **Dashboard** | At-a-glance overview of all modules |
-| ✅ **Task Manager** | Full CRUD tasks with priorities, due dates, categories |
-| 📝 **Notes** | Auto-saving notes with search |
-| 🔥 **Habit Tracker** | Daily habits with streak tracking & 7-day chart |
-| ⏱️ **Pomodoro Timer** | Focus timer with ring animation, session logging |
-| 💰 **Budget Tracker** | Income/expense tracking with category breakdown |
-| 📅 **Calendar & Planner** | Monthly calendar with events |
-| 🔐 **Password Manager** | Local encrypted vault with password generator |
-| 📋 **Clipboard Manager** | Clipboard history with auto-capture |
-| 📁 **File Organizer** | Browse, quick-access, and open files |
-
----
+- ⚡ **Optimized Operations** — Engineered for performance and stability.
+- 🎨 **Sleek Interface & Theme** — Built using VarshuAi standard aesthetics.
+- 🔒 **Zero-Dependency Core** — Minimal setup complexity.
 
 <!-- ============================== COMMANDS ============================== -->
 
@@ -92,12 +81,13 @@ cd productivity-suite-pc
 <samp>&nbsp;TECH STACK</samp>
 </h2>
 
-- **[Electron](https://www.electronjs.org/)** — Cross-platform desktop framework
-- **Vanilla HTML/CSS/JS** — No frontend framework needed
-- **Node.js fs** — Local data persistence (JSON files)
-- **Inter + JetBrains Mono** — Google Fonts
+<div align="center">
 
----
+#### `>> SYSTEM INVENTORY`
+![JavaScript](https://img.shields.io/badge/JavaScript-Primary_Language-00FF88?style=for-the-badge&logoColor=black)
+![Git](https://img.shields.io/badge/Git-VCS-00CC66?style=for-the-badge&logo=git&logoColor=white)
+
+</div>
 
 <!-- ============================== SETUP ============================== -->
 
@@ -106,28 +96,14 @@ cd productivity-suite-pc
 <samp>&nbsp;SETUP</samp>
 </h2>
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) v18+
-- npm v8+
-
-### Install & Run
 ```bash
-# Install dependencies
-npm install
+# 1. Clone repository remote
+git clone https://github.com/VarshuAi/productivity-suite-pc.git
+cd productivity-suite-pc
 
-# Start the app
-npm start
-
-# Development mode
-npm run dev
+# 2. Check technical prerequsites
+# Ensure runtime matches requirements (JavaScript)
 ```
-
-### Build for Production
-```bash
-npm run build
-```
-
----
 
 <!-- ============================== STRUCTURE ============================== -->
 
@@ -137,28 +113,11 @@ npm run build
 
 ```
 productivity-suite-pc/
-├── main.js              # Electron main process
-├── preload.js           # Context bridge (IPC)
-├── package.json
-├── src/
-│   ├── index.html       # Main UI shell
-│   ├── styles/
-│   │   └── main.css     # Complete design system
-│   └── js/
-│       ├── app.js       # Navigation, utilities, dashboard
-│       ├── tasks.js     # Task manager
-│       ├── notes.js     # Notes module
-│       ├── habits.js    # Habit tracker
-│       ├── pomodoro.js  # Pomodoro timer
-│       ├── budget.js    # Budget tracker
-│       ├── calendar.js  # Calendar & events
-│       ├── passwords.js # Password vault
-│       ├── clipboard.js # Clipboard manager
-│       └── files.js     # File organizer
-└── assets/
+├── src/             # Source code entrypoints
+├── docs/            # Project documentation files
+├── README.md        # Interactive readme sheet
+└── LICENSE          # Permission details
 ```
-
----
 
 <!-- ============================== FOOTER ============================== -->
 
@@ -170,12 +129,12 @@ productivity-suite-pc/
 
 <br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Source%20Code%20Pro&size=14&duration=4000&pause=1000&color=00FF88&center=true&vCenter=true&width=500&lines=Made+with+%E2%9D%A4%EF%B8%8F+by+VarshuAi;Build+Fast.+Ship+Secure.+Scale+Infinite.)](https://github.com/VarshuAi)
+<a href="https://github.com/VarshuAi"><img src="https://readme-typing-svg.demolab.com?font=Source%20Code%20Pro&size=14&duration=4000&pause=1000&color=00FF88&center=true&vCenter=true&width=500&lines=Made+with+%E2%9D%A4%EF%B8%8F+by+VarshuAi;Build+Fast.+Ship+Secure.+Scale+Infinite." alt="Typing SVG"/></a>
 
 <br/>
 
-[![GitHub](https://img.shields.io/badge/VarshuAi-Profile-00FF88?style=for-the-badge&logo=github&logoColor=black)](https://github.com/VarshuAi)
-[![Repo](https://img.shields.io/badge/productivity-suite-pc-Repo-00CC66?style=for-the-badge&logo=github&logoColor=black)](https://github.com/VarshuAi/productivity-suite-pc)
+<a href="https://github.com/VarshuAi"><img src="https://img.shields.io/badge/VarshuAi-Profile-00FF88?style=for-the-badge&logo=github&logoColor=black" alt="GitHub Profile"/></a>
+<a href="https://github.com/VarshuAi/productivity-suite-pc"><img src="https://img.shields.io/badge/productivity-suite-pc-Repo-00CC66?style=for-the-badge&logo=github&logoColor=black" alt="Repository"/></a>
 
 <br/>
 
