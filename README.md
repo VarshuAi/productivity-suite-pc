@@ -38,7 +38,7 @@ version: 1.0
 type: Repository
 author: VarshuAi
 description: >
-  ??? A comprehensive personal productivity suite for PC - Tasks, Notes, Habits, Pomodoro, Budget, Calendar, Passwords, Clipboard & File Organizer. Built with Electron + HTML/JS/CSS
+  name: productivity-suite-pc version: 1.0 type: Repository author: VarshuAi description: >   ??? A comprehensive personal productivity suite for PC - Tasks, Notes, Habits, Pomodoro, Budget, Calendar, Passwords, Clipboard & File Organizer. Built with Electron + HTML/JS/CSS primary_tech: JavaScript
 primary_tech: JavaScript
 ```
 
